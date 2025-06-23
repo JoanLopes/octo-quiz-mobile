@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 export const routes: Routes = [
   {
@@ -7,23 +9,27 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
     path: 'login',
-    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+    loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage),
+    canActivate: [LoginGuard],
   },
   {
     path: 'deck-list',
-    loadComponent: () => import('./pages/deck-list/deck-list.page').then( m => m.DeckListPage)
+    loadComponent: () => import('./pages/deck-list/deck-list.page').then(m => m.DeckListPage),
+    canActivate: [AuthGuard]
   },
   {
     path: 'flashcard-list',
-    loadComponent: () => import('./pages/flashcard-list/flashcard-list.page').then( m => m.FlashcardListPage)
+    loadComponent: () => import('./pages/flashcard-list/flashcard-list.page').then(m => m.FlashcardListPage),
+    canActivate: [AuthGuard]
   },
   {
     path: 'flashcard-execute',
-    loadComponent: () => import('./pages/flashcard-execute/flashcard-execute.page').then( m => m.FlashcardExecutePage)
+    loadComponent: () => import('./pages/flashcard-execute/flashcard-execute.page').then(m => m.FlashcardExecutePage),
+    canActivate: [AuthGuard]
   },
 ];

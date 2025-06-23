@@ -1,20 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular'; 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+  ],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
+  username = '';
+  password = '';
+  error = '';
 
-  constructor() { }
+  constructor(private auth: AuthService, private router: Router) {}
 
-  ngOnInit() {
+  login() {
+    this.error = '';
+    
+    this.auth.login(this.username, this.password).subscribe({
+      next: async (res: any) => {
+        console.log('Login successful:', res);
+        await this.auth.saveToken(res.access);
+        this.router.navigate(['/deck-list']);
+      },
+      error: () => {
+        this.error = 'Usuário ou senha inválidos.';
+      }
+    });
   }
-
 }
