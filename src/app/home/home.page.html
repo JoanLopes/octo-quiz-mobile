@@ -1,20 +1,61 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-title class="text-white font-bold">Octo Quiz</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/study">Estudar</ion-button>
+      <ion-button routerLink="/deck-list">Decks</ion-button>
+      <ion-button routerLink="/flashcard-list">Flashcards</ion-button>
+      <ion-button routerLink="/logout">Sair</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content class="ion-padding">
+  <div class="text-center mt-6">
+    <h1 class="text-3xl font-bold text-indigo-700">Bem-vindo ao Flashcards</h1>
+    <p class="mt-2 text-gray-600">
+      Estude com cartões de perguntas e respostas rápidas.<br>
+      Crie e organize seus decks para um aprendizado mais eficiente.
+    </p>
   </div>
+
+  <ion-grid class="mt-6">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12" sizeMd="4">
+        <ion-card button routerLink="/deck-list">
+          <ion-card-header class="text-center">
+            <ion-icon name="albums-outline" size="large" color="primary"></ion-icon>
+            <ion-card-title class="text-indigo-700">Gerenciar Decks</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="text-center text-sm text-gray-600">
+            Crie, visualize e organize seus decks de flashcards.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" sizeMd="4">
+        <ion-card button routerLink="/flashcard-list">
+          <ion-card-header class="text-center">
+            <ion-icon name="list-outline" size="large" color="success"></ion-icon>
+            <ion-card-title class="text-green-700">Gerenciar Flashcards</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="text-center text-sm text-gray-600">
+            Adicione, edite e revise seus cartões de perguntas e respostas.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" sizeMd="4">
+        <ion-card button routerLink="/study">
+          <ion-card-header class="text-center">
+            <ion-icon name="time-outline" size="large" color="medium"></ion-icon>
+            <ion-card-title class="text-purple-700">Estudar Decks</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="text-center text-sm text-gray-600">
+            Pratique com seus flashcards em modo de estudo interativo.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

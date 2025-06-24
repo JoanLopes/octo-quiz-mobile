@@ -18,6 +18,11 @@ export const routes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'home',
+    loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage),
+    canActivate: [LoginGuard],
+  },
+  {
     path: 'deck-list',
     loadComponent: () => import('./pages/deck-list/deck-list.page').then(m => m.DeckListPage),
     canActivate: [AuthGuard]
@@ -31,5 +36,21 @@ export const routes: Routes = [
     path: 'flashcard-execute',
     loadComponent: () => import('./pages/flashcard-execute/flashcard-execute.page').then(m => m.FlashcardExecutePage),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./pages/home/home.page').then( m => m.HomePage)
+  },
+  {
+    path: 'deck-list',
+    loadComponent: () => import('./pages/deck-list/deck-list.page').then( m => m.DeckListPage)
+  },
+  {
+    path: 'flashcard-list',
+    loadComponent: () => import('./pages/flashcard-list/flashcard-list.page').then( m => m.FlashcardListPage)
+  },
+  {
+    path: 'flashcard-execute',
+    loadComponent: () => import('./pages/flashcard-execute/flashcard-execute.page').then( m => m.FlashcardExecutePage)
   },
 ];

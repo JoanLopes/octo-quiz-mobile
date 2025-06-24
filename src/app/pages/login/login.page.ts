@@ -30,7 +30,7 @@ export class LoginPage {
       next: async (res: any) => {
         console.log('Login successful:', res);
         await this.auth.saveToken(res.access);
-        this.router.navigate(['/deck-list']);
+        this.router.navigate(['/home']);
       },
       error: () => {
         this.error = 'Usuário ou senha inválidos.';
