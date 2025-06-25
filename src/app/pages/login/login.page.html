@@ -5,21 +5,40 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form (ngSubmit)="login()">
+  <form (ngSubmit)="login()" #loginForm="ngForm">
     <ion-item>
       <ion-label position="floating">Usuário</ion-label>
-      <ion-input [(ngModel)]="username" name="username" required></ion-input>
+      <ion-input
+        [(ngModel)]="username"
+        name="username"
+        required
+        type="text"
+        autocomplete="username"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Senha</ion-label>
-      <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
+      <ion-input
+        [(ngModel)]="password"
+        name="password"
+        required
+        type="password"
+        autocomplete="current-password"
+      ></ion-input>
     </ion-item>
 
-    <ion-button expand="block" type="submit" class="ion-margin-top">Entrar</ion-button>
+    <ion-button
+      expand="block"
+      type="submit"
+      class="ion-margin-top"
+      [disabled]="loginForm.invalid"
+    >
+      Entrar
+    </ion-button>
   </form>
 
-  <div *ngIf="error" class="ion-text-center ion-color-danger mt-3">
-    {{ error }}
-  </div>
+  <ion-text *ngIf="error" color="danger" class="ion-text-center">
+    <p class="ion-padding-top">{{ error }}</p>
+  </ion-text>
 </ion-content>

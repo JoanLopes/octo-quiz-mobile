@@ -53,4 +53,14 @@ export const routes: Routes = [
     path: 'flashcard-execute',
     loadComponent: () => import('./pages/flashcard-execute/flashcard-execute.page').then( m => m.FlashcardExecutePage)
   },
+  {
+    path: 'deck-form',
+    loadComponent: () => import('./pages/deck-form/deck-form.page').then(m => m.DeckFormPage)
+  },
+  {
+    path: 'deck-form/:id',
+    loadComponent: () => import('./pages/deck-form/deck-form.page').then(m => m.DeckFormPage)
+  },
+
+
 ];

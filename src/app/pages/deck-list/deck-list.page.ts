@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { DeckListService } from './deck-list.service';
+import { DeckService } from '../../services/deck.service';
 import { DeckList } from './deck-list.model';
 import { IonicModule, AlertController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-deck-list',
   standalone: true,
-  imports: [CommonModule, IonicModule, RouterModule],
+  imports: [CommonModule, IonicModule, RouterModule, FormsModule],
   templateUrl: './deck-list.page.html',
   styleUrls: ['./deck-list.page.scss']
 })
@@ -17,7 +18,7 @@ export class DeckListPage implements OnInit {
   searchText = '';
 
   constructor(
-    private deckService: DeckListService,
+    private deckService: DeckService,
     private alertController: AlertController
   ) {}
 

@@ -25,11 +25,11 @@ export class LoginPage {
 
   login() {
     this.error = '';
-    
+
     this.auth.login(this.username, this.password).subscribe({
       next: async (res: any) => {
         console.log('Login successful:', res);
-        await this.auth.saveToken(res.access);
+        await this.auth.saveToken(res.token); // <-- CHAVE CERTA É 'token'
         this.router.navigate(['/home']);
       },
       error: () => {
@@ -37,4 +37,5 @@ export class LoginPage {
       }
     });
   }
+
 }
