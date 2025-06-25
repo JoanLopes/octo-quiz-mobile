@@ -38,28 +38,28 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'home',
-    loadComponent: () => import('./pages/home/home.page').then( m => m.HomePage)
-  },
-  {
-    path: 'deck-list',
-    loadComponent: () => import('./pages/deck-list/deck-list.page').then( m => m.DeckListPage)
-  },
-  {
-    path: 'flashcard-list',
-    loadComponent: () => import('./pages/flashcard-list/flashcard-list.page').then( m => m.FlashcardListPage)
-  },
-  {
     path: 'flashcard-execute',
     loadComponent: () => import('./pages/flashcard-execute/flashcard-execute.page').then( m => m.FlashcardExecutePage)
   },
   {
     path: 'deck-form',
-    loadComponent: () => import('./pages/deck-form/deck-form.page').then(m => m.DeckFormPage)
+    loadComponent: () => import('./pages/deck-form/deck-form.page').then(m => m.DeckFormPage),
+    canActivate: [AuthGuard]
   },
   {
     path: 'deck-form/:id',
-    loadComponent: () => import('./pages/deck-form/deck-form.page').then(m => m.DeckFormPage)
+    loadComponent: () => import('./pages/deck-form/deck-form.page').then(m => m.DeckFormPage),
+    canActivate: [AuthGuard]
+  },
+  {
+  path: 'flashcard-form',
+    loadComponent: () => import('./pages/flashcard-form/flashcard-form.page').then(m => m.FlashcardFormPage),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'flashcard-form/:id',
+    loadComponent: () => import('./pages/flashcard-form/flashcard-form.page').then(m => m.FlashcardFormPage),
+    canActivate: [AuthGuard]
   },
 
 

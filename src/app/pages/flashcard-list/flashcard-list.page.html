@@ -1,13 +1,60 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>flashcard-list</ion-title>
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <a routerLink="/home" class="text-white font-bold" style="text-decoration: none; color: white;">
+        Octo Quiz
+      </a>
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/study">Estudar</ion-button>
+      <ion-button routerLink="/deck-list">Decks</ion-button>
+      <ion-button routerLink="/flashcard-list">Flashcards</ion-button>
+      <ion-button (click)="logout()">Sair</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">flashcard-list</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="text-center mb-4">
+    <h2 class="text-2xl font-bold text-indigo-700">Meus Flashcards</h2>
+    <p class="text-sm text-gray-600">Gerencie suas perguntas e respostas com facilidade.</p>
+  </div>
+
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="9">
+        <ion-searchbar [(ngModel)]="searchText" placeholder="Buscar por pergunta ou deck..."></ion-searchbar>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button expand="block" routerLink="/flashcard-form" color="primary">
+          + Novo
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="filteredFlashcards.length > 0; else vazio">
+    <ion-item *ngFor="let card of filteredFlashcards">
+      <ion-thumbnail slot="start" *ngIf="card.photo">
+        <img [src]="card.photo" />
+      </ion-thumbnail>
+
+      <ion-label>
+        <h3 class="text-md font-bold">{{ card.question }}</h3>
+        <p class="text-sm text-gray-600">Deck: {{ card.deck_name }}</p>
+        <p class="text-sm">Resposta: {{ card.answer }}</p>
+      </ion-label>
+
+      <ion-buttons slot="end">
+        <ion-button color="danger" (click)="confirmDelete(card.id)">Excluir</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #vazio>
+    <div class="ion-text-center ion-padding">
+      <p>Nenhum flashcard encontrado.</p>
+    </div>
+  </ng-template>
 </ion-content>

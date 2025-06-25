@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ id ? 'Editar Flashcard' : 'Novo Flashcard' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="submit()">
+    <ion-item>
+      <ion-label position="floating">Pergunta</ion-label>
+      <ion-input [(ngModel)]="question" name="question" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Resposta</ion-label>
+      <ion-textarea [(ngModel)]="answer" name="answer" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Deck</ion-label>
+      <ion-select [(ngModel)]="deck" name="deck" required interface="popover">
+        <ion-select-option *ngFor="let d of decks" [value]="d.id">
+          {{ d.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" class="ion-margin-top" [disabled]="isLoading">
+      {{ id ? 'Atualizar' : 'Criar' }}
+    </ion-button>
+  </form>
+</ion-content>
