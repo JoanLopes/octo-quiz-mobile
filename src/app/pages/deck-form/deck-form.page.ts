@@ -5,6 +5,7 @@ import { IonicModule, ToastController, LoadingController } from '@ionic/angular'
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeckService } from '../../services/deck.service';
 import { DeckList } from '../deck-list/deck-list.model';
+import { AuthService } from '../../services/auth.service';  
 
 @Component({
   selector: 'app-deck-form',
@@ -24,7 +25,8 @@ export class DeckFormPage implements OnInit {
     private router: Router,
     private deckService: DeckService,
     private toastController: ToastController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -81,6 +83,10 @@ export class DeckFormPage implements OnInit {
     } else {
       this.deckService.createDeck(data).subscribe(callback);
     }
+  }
+
+  logout() {
+    this.authService.logout()
   }
 
   private async showToast(message: string) {

@@ -5,6 +5,7 @@ import { IonicModule, AlertController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-deck-list',
@@ -19,7 +20,8 @@ export class DeckListPage implements OnInit {
 
   constructor(
     private deckService: DeckService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -36,6 +38,10 @@ export class DeckListPage implements OnInit {
     return this.decks.filter(deck =>
       (deck.name + deck.description).toLowerCase().includes(this.searchText.toLowerCase())
     );
+  }
+
+  logout() {
+    this.authService.logout()
   }
 
   async confirmDelete(id: number) {

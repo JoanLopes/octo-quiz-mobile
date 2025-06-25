@@ -1,6 +1,17 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar color="primary">
-    <ion-title>{{ id ? 'Editar Deck' : 'Criar Deck' }}</ion-title>
+    <ion-title>
+      <a routerLink="/home" class="text-white font-bold" style="text-decoration: none; color: white;">
+        Octo Quiz
+      </a>
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/study">Estudar</ion-button>
+      <ion-button routerLink="/deck-list">Decks</ion-button>
+      <ion-button routerLink="/flashcard-list">Flashcards</ion-button>
+      <ion-button (click)="logout()">Sair</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
